@@ -5,7 +5,7 @@ const initialState: Country[] = []
 export const fetchCountries = createAsyncThunk(
     "fetchCountries",
     async () => {
-        const jsonData = await fetch("https://restcountries.com/v3/all?fields=name,capital,currencies")
+        const jsonData = await fetch("https://restcountries.com/v3/all?fields=name,capital,currencies,flags")
         return  jsonData.json()
 
     }

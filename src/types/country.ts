@@ -6,6 +6,7 @@ export interface Country{
             symbol:string
         }
     },
-    capital:string[]
+    capital:string[],
+    flags: string[]
 
 }
