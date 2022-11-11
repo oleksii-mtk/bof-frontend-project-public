@@ -37,7 +37,7 @@ const CountryTable = () => {
               <TableCell>
                 <img src={item.flags[0]} alt="" width="50em" />
               </TableCell>
-              <TableCell><Link to={item.name.official} key={item.name.official}>{item.name.official}</Link></TableCell>
+              <TableCell><Link style={{textDecoration: 'none', color:'white'}}  to={"country/"+ item.name.official} key={item.name.official}>{item.name.official}</Link></TableCell>
               <TableCell>{Object.keys(item.currencies)}</TableCell>
               <TableCell>{item.capital}</TableCell>
             </TableRow>

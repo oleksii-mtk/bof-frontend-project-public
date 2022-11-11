@@ -4,11 +4,12 @@ import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
 import { blue } from "@mui/material/colors";
-//import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import CountryTable from "./components/CountryTable";
 import SingleCountry from "./components/SingleCountry";
+import Home from "./pages/Home";
+import SingleCountryPage from "./pages/SingleCountryPage";
 
 const theme = createTheme({
   palette: {
@@ -28,8 +29,8 @@ function App() {
       <div>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<CountryTable />} />
-            <Route path=":countryname" element={<SingleCountry />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/country/:countryname" element={<SingleCountryPage />} />
           </Routes>
         </BrowserRouter>
       </div>

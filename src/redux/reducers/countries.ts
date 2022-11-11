@@ -11,6 +11,15 @@ export const fetchCountries = createAsyncThunk(
     }
 )
 
+export const fetchCountry = createAsyncThunk(
+    "fetchCountry",
+    async (name:string) => {
+        const jsonData = await fetch(`https://restcountries.com/v3.1/name/${name}`)
+        return  jsonData.json()
+
+    }
+)
+
 const countrySlicer = createSlice({
     name:"countriesSlice",
     initialState,
@@ -22,7 +31,13 @@ const countrySlicer = createSlice({
             return action.payload
         })
 
+        build.addCase(fetchCountry.fulfilled,(state,action)=>{
+            return action.payload
+        })
+
     }
+
+
 })
 
 export const countriesReducer = countrySlicer.reducer
