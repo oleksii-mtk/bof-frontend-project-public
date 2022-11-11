@@ -1,4 +1,4 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice,createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Country } from "../../types/country";
 const initialState: Country[] = []
 
@@ -24,6 +24,9 @@ const countrySlicer = createSlice({
     name:"countriesSlice",
     initialState,
     reducers:{
+        search: (state, action : PayloadAction<string>) => {
+            let input = action.payload
+        }
 
     },
     extraReducers: (build) => {
@@ -41,3 +44,4 @@ const countrySlicer = createSlice({
 })
 
 export const countriesReducer = countrySlicer.reducer
+export const {search} = countrySlicer.actions

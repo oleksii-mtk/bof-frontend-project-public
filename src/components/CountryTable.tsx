@@ -13,13 +13,13 @@ import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchCountries } from "../redux/reducers/countries";
 import { Link } from "react-router-dom";
+import { Country } from "../types/country";
+type Props = {
+  countries: Country[]
+}
 
-const CountryTable = () => {
-  const countries = useAppSelector((state) => state.countriesReducer);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(fetchCountries());
-  }, []);
+const CountryTable = ( {countries} :Props) => {
+
   return (
     <TableContainer sx={{ bgcolor: "background.default" }}>
       <Table>
