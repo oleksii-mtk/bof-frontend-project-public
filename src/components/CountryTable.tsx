@@ -11,7 +11,7 @@ import {
 import React, { useEffect } from "react";
 
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { fetchCountries } from "../redux/reducers/countries";
+import { fetchCountries, sortname } from "../redux/reducers/countries";
 import { Link } from "react-router-dom";
 import { Country } from "../types/country";
 type Props = {
@@ -20,13 +20,15 @@ type Props = {
 
 const CountryTable = ( {countries} :Props) => {
 
+  const state = useAppSelector((state) => state.countriesReducer);
+  const dispatch = useAppDispatch();
   return (
     <TableContainer sx={{ bgcolor: "background.default" }}>
       <Table>
         <TableHead>
           <TableRow>
             <TableCell>Flag</TableCell>
-            <TableCell>Official name</TableCell>
+            <TableCell onClick={() => {dispatch(sortname())}}>{`Official name ${state.sortName}`}</TableCell>
             <TableCell>Currency</TableCell>
             <TableCell>Capital</TableCell>
           </TableRow>

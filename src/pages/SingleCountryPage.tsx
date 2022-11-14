@@ -1,29 +1,25 @@
-import React, { useEffect } from 'react'
-import {useParams} from 'react-router'
-import { useAppDispatch, useAppSelector } from '../redux/hooks';
-import { fetchCountry } from '../redux/reducers/countries';
+import { Box } from "@mui/material";
+import React, { useEffect } from "react";
+import { useParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+import { fetchCountry } from "../redux/reducers/countries";
 
 const SingleCountryPage = () => {
-
-    const {params} = useParams()
-    const country = useAppSelector((state) => state.countriesReducer);
+  const { countryname } = useParams();
+  const state = useAppSelector((state) => state.countriesReducer);
+  console.log("Prarmeter is " + countryname);
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (params) { dispatch(fetchCountry(params));}
-   
+    if (countryname) {
+      dispatch(fetchCountry(countryname));
+    }
   }, []);
 
-    return (
-        <div>
-            <div>
-          {country[0].capital}</div>
-          <div><img src={country[0].flags[0]} alt="" width="50em" /></div>
-          
-          </div>
-      
-          
-    )
-  
-}
+  return <div> Single Page
+    <div>{state.singleCountry[0].capital[0]}</div>
+    <div>{state.singleCountry[0].name.official}</div>
+    <div>{Object.keys(state.singleCountry[0].currencies)}</div>
+    </div>;
+};
 
-export default SingleCountryPage
+export default SingleCountryPage;

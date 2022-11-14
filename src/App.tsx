@@ -7,7 +7,6 @@ import { blue } from "@mui/material/colors";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import CountryTable from "./components/CountryTable";
-import SingleCountry from "./components/SingleCountry";
 import Home from "./pages/Home";
 import SingleCountryPage from "./pages/SingleCountryPage";
 
@@ -25,15 +24,15 @@ const theme = createTheme({
 
 function App() {
   return (
+
+    
     <ThemeProvider theme={theme}>
-      <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/country/:countryname" element={<SingleCountryPage />} />
           </Routes>
         </BrowserRouter>
-      </div>
     </ThemeProvider>
   );
 }

@@ -1,6 +1,23 @@
+import { PlaylistAddOutlined } from "@mui/icons-material";
 import { createSlice,createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Country } from "../../types/country";
-const initialState: Country[] = []
+
+type stateCountries = {
+    countries: Country[],
+    filtered: Country[],
+    loading: boolean,
+    singleCountry: Country[],
+    sortName: "asc"|"desc",
+    colorMode: "light"|"dark"
+}
+const initialState: stateCountries = {
+    countries:[],
+    filtered :[],
+    loading : false,
+    singleCountry :[],
+    sortName: "asc",
+    colorMode: "light"
+}
 
 export const fetchCountries = createAsyncThunk(
     "fetchCountries",
@@ -25,17 +42,42 @@ const countrySlicer = createSlice({
     initialState,
     reducers:{
         search: (state, action : PayloadAction<string>) => {
+
             let input = action.payload
+           // state.filtered = state.countries.filter((item)=>{item.name.official.includes(action.payload)})
+           state.filtered = state.countries.filter( (item) => 
+             item.name.official.includes(input))
+        },
+
+        sortname: (state) => {
+
+            if (state.sortName === "asc") {
+
+                state.countries = state.countries.sort((a,b) =>  (a.name.official > b.name.official) ? 1 : -1)
+                state.sortName = "desc"
+
+            } else {
+                state.countries = state.countries.sort((a,b) =>  (a.name.official > b.name.official) ? -1 : 1)
+                state.sortName = "asc"
+
+            }
+
+        },
+        colorToggle: (state) => {
+            state.colorMode = (state.colorMode === "dark") ? "light" : "dark"
         }
+
 
     },
     extraReducers: (build) => {
         build.addCase(fetchCountries.fulfilled,(state,action)=>{
-            return action.payload
+            state.countries = action.payload
+            state.loading = false;
         })
 
         build.addCase(fetchCountry.fulfilled,(state,action)=>{
-            return action.payload
+            state.singleCountry = action.payload
+            state.loading = false;
         })
 
     }
@@ -44,4 +86,4 @@ const countrySlicer = createSlice({
 })
 
 export const countriesReducer = countrySlicer.reducer
-export const {search} = countrySlicer.actions
+export const {search,sortname,colorToggle} = countrySlicer.actions
