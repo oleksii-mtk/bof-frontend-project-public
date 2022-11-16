@@ -1,22 +1,14 @@
 import { PlaylistAddOutlined } from "@mui/icons-material";
 import { createSlice,createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { Country } from "../../types/country";
+import { Country, stateCountries } from "../../types/country";
 
-type stateCountries = {
-    countries: Country[],
-    filtered: Country[],
-    loading: boolean,
-    singleCountry: Country[],
-    sortName: "asc"|"desc",
-    colorMode: "light"|"dark"
-}
+
 const initialState: stateCountries = {
     countries:[],
     filtered :[],
     loading : false,
     singleCountry :[],
-    sortName: "asc",
-    colorMode: "light"
+    sortName: "asc"
 }
 
 export const fetchCountries = createAsyncThunk(
@@ -63,10 +55,6 @@ const countrySlicer = createSlice({
             }
 
         },
-        colorToggle: (state) => {
-            state.colorMode = (state.colorMode === "dark") ? "light" : "dark"
-        }
-
 
     },
     extraReducers: (build) => {
@@ -86,4 +74,4 @@ const countrySlicer = createSlice({
 })
 
 export const countriesReducer = countrySlicer.reducer
-export const {search,sortname,colorToggle} = countrySlicer.actions
+export const {search,sortname} = countrySlicer.actions

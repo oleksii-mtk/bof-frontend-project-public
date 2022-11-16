@@ -10,3 +10,11 @@ export interface Country{
     flags: string[]
 
 }
+
+export type stateCountries = {
+    countries: Country[],
+    filtered: Country[],
+    loading: boolean,
+    singleCountry: Country[],
+    sortName: "asc"|"desc"
+}

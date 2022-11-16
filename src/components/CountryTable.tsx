@@ -1,4 +1,5 @@
 import {
+  Checkbox,
   Table,
   TableBody,
   TableCell,
@@ -14,6 +15,11 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchCountries, sortname } from "../redux/reducers/countries";
 import { Link } from "react-router-dom";
 import { Country } from "../types/country";
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
+import Favorite from '@mui/icons-material/Favorite';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import BookmarkIcon from '@mui/icons-material/Bookmark';
+
 type Props = {
   countries: Country[]
 }
@@ -31,6 +37,7 @@ const CountryTable = ( {countries} :Props) => {
             <TableCell onClick={() => {dispatch(sortname())}}>{`Official name ${state.sortName}`}</TableCell>
             <TableCell>Currency</TableCell>
             <TableCell>Capital</TableCell>
+            <TableCell>Favourite</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -42,6 +49,7 @@ const CountryTable = ( {countries} :Props) => {
               <TableCell><Link style={{textDecoration: 'none', color:'white'}}  to={"country/"+ item.name.official} key={item.name.official}>{item.name.official}</Link></TableCell>
               <TableCell>{Object.keys(item.currencies)}</TableCell>
               <TableCell>{item.capital}</TableCell>
+              <TableCell><Checkbox checked={} OnChange={} icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />}/></TableCell>
             </TableRow>
           ))}
         </TableBody>
