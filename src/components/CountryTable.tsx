@@ -15,18 +15,19 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchCountries, sortname } from "../redux/reducers/countries";
 import { Link } from "react-router-dom";
 import { Country } from "../types/country";
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import BookmarkIcon from '@mui/icons-material/Bookmark';
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { addRemove } from "../redux/reducers/favorites";
 
 type Props = {
-  countries: Country[]
-}
+  countries: Country[];
+};
 
-const CountryTable = ( {countries} :Props) => {
-
+const CountryTable = ({ countries }: Props) => {
   const state = useAppSelector((state) => state.countriesReducer);
+  const stateFav = useAppSelector((state) => state.favReducer);
   const dispatch = useAppDispatch();
   return (
     <TableContainer sx={{ bgcolor: "background.default" }}>
@@ -34,7 +35,11 @@ const CountryTable = ( {countries} :Props) => {
         <TableHead>
           <TableRow>
             <TableCell>Flag</TableCell>
-            <TableCell onClick={() => {dispatch(sortname())}}>{`Official name ${state.sortName}`}</TableCell>
+            <TableCell
+              onClick={() => {
+                dispatch(sortname());
+              }}
+            >{`Official name ${state.sortName}`}</TableCell>
             <TableCell>Currency</TableCell>
             <TableCell>Capital</TableCell>
             <TableCell>Favourite</TableCell>
@@ -46,10 +51,31 @@ const CountryTable = ( {countries} :Props) => {
               <TableCell>
                 <img src={item.flags[0]} alt="" width="50em" />
               </TableCell>
-              <TableCell><Link style={{textDecoration: 'none', color:'white'}}  to={"country/"+ item.name.official} key={item.name.official}>{item.name.official}</Link></TableCell>
+              <TableCell>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={"country/" + item.name.official}
+                  key={item.name.official}
+                >
+                  {item.name.official}
+                </Link>
+              </TableCell>
               <TableCell>{Object.keys(item.currencies)}</TableCell>
               <TableCell>{item.capital}</TableCell>
-              <TableCell><Checkbox checked={} OnChange={} icon={<BookmarkBorderIcon />} checkedIcon={<BookmarkIcon />}/></TableCell>
+              <TableCell>
+                <Checkbox
+                  checked={stateFav.countries.some((element) => {
+                    return element.name.official === item.name.official
+                      ? true
+                      : false;
+                  })}
+                  onChange={() => {
+                    dispatch(addRemove(item));
+                  }}
+                  icon={<BookmarkBorderIcon />}
+                  checkedIcon={<BookmarkIcon />}
+                />
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

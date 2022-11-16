@@ -18,3 +18,7 @@ export type stateCountries = {
     singleCountry: Country[],
     sortName: "asc"|"desc"
 }
+
+export type stateFavorites = {
+    countries : Country[],
+}
