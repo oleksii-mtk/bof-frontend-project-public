@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { amber, deepOrange, grey, red } from "@mui/material/colors";
+import { amber, deepOrange, grey, red, deepPurple } from "@mui/material/colors";
 import { blue } from "@mui/material/colors";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -27,24 +27,46 @@ function App() {
       ...(mode === "light"
         ? {
             // palette values for light mode
-            primary: amber,
-            divider: amber[200],
+            primary: deepPurple,
+            divider: deepPurple[700],
+            background: {
+              default: deepPurple[100],
+              paper: deepPurple[100],
+            },
             text: {
               primary: grey[900],
-              secondary: grey[800],
+              secondary: grey[300],
+            },
+            action: {
+              active: grey[900],
+              hover: grey[900],
+              hoverOpacity: 0.7,
+              focus: grey[900],
+              focusOpacity: 1,
+              selected: grey[900],
+              selectedOpacity: 1
             },
           }
         : {
             // palette values for dark mode
-            primary: deepOrange,
-            divider: deepOrange[700],
+            primary: deepPurple,
+            divider: deepPurple[700],
             background: {
-              default: deepOrange[900],
-              paper: deepOrange[900],
+              default: '#053C5E',
+              paper: '#053C5E',
             },
             text: {
-              primary: "#fff",
-              secondary: grey[500],
+              primary: "#BFDBF7",
+              secondary: "#BFDBF7",
+            },
+            action: {
+              active: "#BFDBF7",
+              hover: "#BFDBF7",
+              hoverOpacity: 0.7,
+              focus: "#BFDBF7",
+              focusOpacity: 1,
+              selected: "#BFDBF7",
+              selectedOpacity: 1
             },
           }),
     },

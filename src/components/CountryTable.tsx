@@ -30,7 +30,7 @@ const CountryTable = ({ countries }: Props) => {
   const stateFav = useAppSelector((state) => state.favReducer);
   const dispatch = useAppDispatch();
   return (
-    <TableContainer sx={{ bgcolor: "background.default" }}>
+    <TableContainer sx={{ bgcolor: "background.default", color:"color.default" }}>
       <Table>
         <TableHead>
           <TableRow>
@@ -53,7 +53,7 @@ const CountryTable = ({ countries }: Props) => {
               </TableCell>
               <TableCell>
                 <Link
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none" }}
                   to={"country/" + item.name.official}
                   key={item.name.official}
                 >
