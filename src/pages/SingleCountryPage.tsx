@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
+import HomeButton from "../components/HomeButton";
 import ToggleButton from "../components/ToggleButton";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchCountry } from "../redux/reducers/countries";
@@ -18,6 +19,7 @@ const SingleCountryPage = () => {
   return (
     
     <Box sx={{ bgcolor: "background.default" }}>
+      <HomeButton/>
       <ToggleButton />
       Single Page
       <div>{state.singleCountry[0].capital[0]}</div>

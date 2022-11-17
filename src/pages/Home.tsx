@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import CountryTable from "../components/CountryTable";
+import HomeButton from "../components/HomeButton";
 import ToggleButton from "../components/ToggleButton";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchCountries, search } from "../redux/reducers/countries";
@@ -23,7 +24,7 @@ const Home = () => {
         name="search"
         id="search"
       />
-
+<HomeButton/>
       <ToggleButton />
       <Box>
         <CountryTable
