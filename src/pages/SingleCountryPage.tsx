@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import HomeButton from "../components/HomeButton";
@@ -17,16 +17,25 @@ const SingleCountryPage = () => {
   }, []);
 
   return (
-    
-    <Box sx={{ bgcolor: "background.default" }}>
-      <HomeButton/>
-      <ToggleButton />
-      Single Page
+    <Box
+      height="100vh"
+      sx={{
+        bgcolor: "background.default",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        {" "}
+        <HomeButton />
+        <ToggleButton />
+        <div>{state.singleCountry[0].name.official}</div>
+        <Avatar alt={state.singleCountry[0].name.official} src={state.singleCountry[0].flags.png} />
+      </Box>
       <div>{state.singleCountry[0].capital[0]}</div>
-      <div>{state.singleCountry[0].name.official}</div>
-      <div><img src={state.singleCountry[0].flags.png} alt="" /></div>
-     
-  {/*     <div>{state.singleCountry[0].capital[0]}</div>
+
+      {/*     <div>{state.singleCountry[0].capital[0]}</div>
       <div>{state.singleCountry[0].name.official}</div>
       <div>{Object.keys(state.singleCountry[0].currencies)}</div> */}
     </Box>

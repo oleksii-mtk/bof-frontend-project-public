@@ -15,7 +15,7 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <Box sx={{ bgcolor: "background.default" }}>
+    <Box sx={{  bgcolor: "background.default" }}>
       <input
         type="text"
         onChange={(e: any) => {
@@ -24,7 +24,7 @@ const Home = () => {
         name="search"
         id="search"
       />
-<HomeButton/>
+      <HomeButton/>
       <ToggleButton />
       <Box>
         <CountryTable

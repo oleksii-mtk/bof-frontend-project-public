@@ -3,12 +3,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { amber, deepOrange, grey, red, deepPurple } from "@mui/material/colors";
-import { blue } from "@mui/material/colors";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import CountryTable from "./components/CountryTable";
 import Home from "./pages/Home";
 import SingleCountryPage from "./pages/SingleCountryPage";
+
 
 export const ThemeContext = createContext({ toggleMode: () => {} });
 
@@ -44,7 +43,7 @@ function App() {
               focus: grey[900],
               focusOpacity: 1,
               selected: grey[900],
-              selectedOpacity: 1
+              selectedOpacity: 1,
             },
           }
         : {
@@ -52,8 +51,8 @@ function App() {
             primary: deepPurple,
             divider: deepPurple[700],
             background: {
-              default: '#053C5E',
-              paper: '#053C5E',
+              default: "#053C5E",
+              paper: "#053C5E",
             },
             text: {
               primary: "#BFDBF7",
@@ -66,7 +65,7 @@ function App() {
               focus: "#BFDBF7",
               focusOpacity: 1,
               selected: "#BFDBF7",
-              selectedOpacity: 1
+              selectedOpacity: 1,
             },
           }),
     },
